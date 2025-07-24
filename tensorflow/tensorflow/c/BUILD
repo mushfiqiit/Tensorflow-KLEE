@@ -7,6 +7,10 @@ cc_library(
     ],
     hdrs = [
         "tf_tensor.h",
+        "tf_datatype.h",
+        "tf_status.h",
+        "tf_status_helper.h",
+        "c_api_macros.h",
     ],
     deps = [
         "//tensorflow/core:framework",
@@ -20,8 +24,10 @@ cc_binary(
     srcs = ["tf_tensor_harness.cc"],
     deps = [
         ":tf_tensor_lib",
+        "@klee//:klee",
+        "//tensorflow/core/platform:platform_port",
+        "//third_party/xla/xla/tsl/c:tsl_status_headers",
     ],
-    copts = ["-Iexternal/klee/include"],
-    linkopts = ["-L$(HOME)/tools/klee/build/lib", "-lkleeRuntest"],  # You might need to adjust this
+    linkopts = ["-L/home/mushfiqur/tools/klee/build/lib", "-lkleeRuntest"],
     visibility = ["//visibility:public"],
 )

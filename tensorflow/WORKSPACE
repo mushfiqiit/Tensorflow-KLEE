@@ -169,3 +169,17 @@ load(
 )
 
 nvshmem_configure(name = "local_config_nvshmem")
+
+new_local_repository(
+    name = "klee",
+    path = "/home/mushfiqur/tools/klee",
+    build_file_content = """
+cc_library(
+    name = "klee",
+    hdrs = glob(["include/klee/*.h"]),
+    includes = ["include"],
+    visibility = ["//visibility:public"],
+)
+""",
+)
+

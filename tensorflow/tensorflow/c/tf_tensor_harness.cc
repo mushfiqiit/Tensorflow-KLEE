@@ -1,7 +1,12 @@
 #include "tensorflow/c/tf_tensor.h"
 #include "klee/klee.h"
+#include <assert.h>
 #include <stdlib.h>
 #include <stdint.h>
+
+// Needed for klee_assert to compile correctly
+extern "C" void __assert_fail(const char *assertion, const char *file,
+                              unsigned int line, const char *function);
 
 void dummy_deallocator(void* data, size_t len, void* arg) {}
 
